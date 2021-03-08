@@ -13,7 +13,7 @@ public class Body {
 	
 	public Body (String id,Vector2D v, Vector2D p, double m ) {
 		this.id = id;
-		this.v = v;
+		this.v = v; //vel
 		this.p = p;
 		this.m = m;
 		this.f = new Vector2D();
@@ -41,17 +41,17 @@ public class Body {
 
 	}
 	
-	public JSONObject getState() {
+	/*public JSONObject getState() {
 		
 		JSONObject a ;
-		a.
+		//a.
 		return {"id": id, "m": m, "p": p, "v": v, "f" : f} ;
 		
-	}
+	}*/
 	
-	public String toString() {
+	/*public String toString() {
 		return getState().toString();
-	}
+	}*/
 	
 	void resetForce() { //reseting force vector
 		this.f = new Vector2D();
