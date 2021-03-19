@@ -13,7 +13,7 @@ public class Body {
 	
 	public Body (String id,Vector2D v, Vector2D p, double m ) {
 		this.id = id;
-		this.v = v; //vel
+		this.v = v; 
 		this.p = p;
 		this.m = m;
 		this.f = new Vector2D();
@@ -29,29 +29,53 @@ public class Body {
 		
 		if(m == 0) {
 			a = new Vector2D();
+		//	v = new Vector2D(); ????
 		}
 		else {
-			a = f.scale(1/m) ;
+			a = f.scale(1.0/m) ;
 		}
 			
 		p.plus(v.scale(t));
-		p.plus(a.scale((t*t)/2));
-		
-		v.plus(a.scale(t)) ;			
+		p.plus(a.scale(0.5 * t * t)); 		
+		v.plus(a.scale(t)) ;	
 
 	}
-	
-	/*public JSONObject getState() {
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Body other = (Body) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+
+	public JSONObject getState() { //puede estar mal 
 		
-		JSONObject a ;
-		//a.
-		return {"id": id, "m": m, "p": p, "v": v, "f" : f} ;
+		JSONObject a = new JSONObject() ;
+		a.put("id", id);
+		a.put("m", m);
+		a.put("p", p.asJSONArray());
+		a.put("f", f.asJSONArray());
+		return a ;
 		
-	}*/
+	}
 	
-	/*public String toString() {
+	public String toString() {
+		
 		return getState().toString();
-	}*/
+		
+	}
 	
 	void resetForce() { //reseting force vector
 		this.f = new Vector2D();
@@ -62,19 +86,19 @@ public class Body {
 		return id;
 	}
 
-	public Vector2D getV() {
-		return v;
+	public Vector2D getVelocity() {
+		return new Vector2D(v);
 	}
 
-	public Vector2D getF() {
-		return f;
+	public Vector2D getForce() {
+		return new Vector2D(f);
 	}
 
-	public Vector2D getP() {
-		return p;
+	public Vector2D getPosition() {
+		return new Vector2D(p);
 	}
 
-	public double getM() {
+	public double getMass() {
 		return m;
 	}
 	

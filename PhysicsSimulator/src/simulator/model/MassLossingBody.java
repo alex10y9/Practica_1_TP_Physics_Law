@@ -1,5 +1,7 @@
 package simulator.model;
 
+import org.json.JSONObject;
+
 import simulator.misc.Vector2D;
 
 public class MassLossingBody extends Body {
@@ -26,5 +28,23 @@ public class MassLossingBody extends Body {
 		
 	}
 	
+	public JSONObject getState() {
+		
+		JSONObject a = new JSONObject() ;
+		a.put("id", id);
+		a.put("m", m);
+		a.put("p", p);
+		a.put("f", f);
+		a.put("freq",lossFrequency );
+		a.put("factor",lossFactor );
+		return a ;
+		
+	}
+	
+	public String toString() {
+		
+		return getState().toString();
+		
+	}
 	
 }
