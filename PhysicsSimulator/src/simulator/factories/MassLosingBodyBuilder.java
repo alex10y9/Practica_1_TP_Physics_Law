@@ -4,9 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.misc.Vector2D;
+import simulator.model.Body;
 import simulator.model.MassLossingBody;
 
-public class MassLosingBodyBuilder<Body> extends Builder<Body>{
+public class MassLosingBodyBuilder extends Builder<Body>{
 
 	@Override
 	public MassLossingBody createInstance(JSONObject info) {

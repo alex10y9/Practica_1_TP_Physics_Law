@@ -7,7 +7,7 @@ import simulator.misc.Vector2D;
 public class MovingTowardsFixedPointBuilder<ForceLaws> extends Builder<ForceLaws>{
 
 	@Override
-	public Object createInstance() {
+	public ForceLaws createInstance(JSONObject o) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 public class MassEqualStatesBuilder<StateComparator> extends Builder<StateComparator>{
 
 	@Override
-	public StateComparator createInstance() {
+	public StateComparator createInstance(JSONObject o) {
 		// TODO Auto-generated method stub
 		return null;
 	}

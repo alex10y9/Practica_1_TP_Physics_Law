@@ -7,7 +7,7 @@ import simulator.misc.Vector2D;
 public class NewtonUniversalGravitationBuilder<ForceLaws> extends Builder<ForceLaws> {
 
 	@Override
-	public Object createInstance() {
+	public ForceLaws createInstance(JSONObject o) {
 	
 		return null;
 	}

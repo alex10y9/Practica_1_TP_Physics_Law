@@ -7,8 +7,9 @@ import org.json.JSONObject;
 
 import simulator.misc.Vector2D;
 import simulator.model.Body;
+import simulator.model.MassLossingBody;
 
-public class BasicBodyBuilder<Body> extends Builder<Body> {
+public class BasicBodyBuilder extends Builder<Body> {
 
 	@Override
 	public Body createInstance(JSONObject info) {
