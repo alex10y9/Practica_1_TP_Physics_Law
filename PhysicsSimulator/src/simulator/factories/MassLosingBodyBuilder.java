@@ -10,9 +10,9 @@ import simulator.model.MassLossingBody;
 public class MassLosingBodyBuilder extends Builder<Body>{
 
 	@Override
-	public MassLossingBody createInstance(JSONObject info) {
+	public MassLossingBody createInstance(JSONObject info) throws Exception {
 		
-		if(info.getString("type").equalsIgnoreCase("basic")) {
+		if(info.getString("type").equalsIgnoreCase("mlb")) {
 			
 			String id = info.getString("id");
 			double m = info.getDouble("m");

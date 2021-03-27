@@ -12,7 +12,7 @@ import simulator.model.MassLossingBody;
 public class BasicBodyBuilder extends Builder<Body> {
 
 	@Override
-	public Body createInstance(JSONObject info) {
+	public Body createInstance(JSONObject info) throws Exception{
 		
 		if(info.getString("type").equalsIgnoreCase("basic")) {
 			

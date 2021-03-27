@@ -14,7 +14,7 @@ public class BuilderBasedFactory<T> implements Factory<T>{
 	}
 	
 	@Override
-	public T createInstance(JSONObject o) {
+	public T createInstance(JSONObject o) throws Exception {
 		
 		if(o != null ) {
 			for(Builder<T> b: this.builders) {

@@ -1,15 +1,32 @@
 package simulator.factories;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.misc.Vector2D;
+import simulator.model.ForceLaws;
+import simulator.model.MovingTowardsFixedPoint;
+import simulator.model.NewtonUniversalGravitation;
 
-public class NewtonUniversalGravitationBuilder<ForceLaws> extends Builder<ForceLaws> {
+public class NewtonUniversalGravitationBuilder extends Builder<ForceLaws> {
 
 	@Override
-	public ForceLaws createInstance(JSONObject o) {
-	
-		return null;
+	public NewtonUniversalGravitation createInstance(JSONObject info) throws Exception {
+		
+		if(info.getString("type").equalsIgnoreCase("nlug")) {
+			
+			double m = info.getDouble("m");
+			
+			JSONObject data = info.getJSONObject("data");
+			double G = data.getDouble("G");
+								
+			NewtonUniversalGravitation b = new NewtonUniversalGravitation(G);
+			return b;
+		}
+		
+		else {
+			return null ;
+		}
 	}
 
 	@Override

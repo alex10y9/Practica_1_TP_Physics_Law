@@ -2,12 +2,27 @@ package simulator.factories;
 
 import org.json.JSONObject;
 
-public class MassEqualStatesBuilder<StateComparator> extends Builder<StateComparator>{
+import simulator.control.MassEqualStates;
+import simulator.control.StateComparator;
+import simulator.model.NewtonUniversalGravitation;
+
+public class MassEqualStatesBuilder extends Builder<StateComparator>{
 
 	@Override
-	public StateComparator createInstance(JSONObject o) {
-		// TODO Auto-generated method stub
-		return null;
+	public MassEqualStates createInstance(JSONObject info) { //falta
+		
+		
+		if(info.getString("type").equalsIgnoreCase("masseq")) {
+								
+			MassEqualStates b = new MassEqualStates();
+			return b;
+			
+		}
+		
+		else {
+			return null ;
+		}
+	
 	}
 
 	@Override
@@ -16,7 +31,8 @@ public class MassEqualStatesBuilder<StateComparator> extends Builder<StateCompar
 		JSONObject info = new JSONObject();
 		info.put("type", "masseq");
 		
-		JSONObject b = new JSONObject();		
+		JSONObject b = new JSONObject();	
+		
 
 		info.put("data", b);
 
