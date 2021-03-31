@@ -29,9 +29,9 @@ public class BuilderBasedFactory<T> implements Factory<T>{
 	}
 
 	@Override
-	public List getInfo() {
+	public List<JSONObject> getInfo() {
 		
-		List array = new ArrayList();
+		List<JSONObject> array = new ArrayList<JSONObject>();
 		
 		for(Builder<T> b: this.builders) {
 			array.add(b.getBuilderInfo());

@@ -24,7 +24,7 @@ public class PhysicsSimulator {
 		
 	}
 	
-	public void advance(List<Body> bodies) {
+	public void advance() {
 		
 		for(Body b : bodies) {
 			b.resetForce();			
