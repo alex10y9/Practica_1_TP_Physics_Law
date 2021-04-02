@@ -1,5 +1,13 @@
 package simulator.launcher;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -9,16 +17,29 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.json.JSONObject;
 
+import simulator.control.Controller;
 import simulator.control.StateComparator;
+import simulator.factories.BasicBodyBuilder;
+import simulator.factories.Builder;
+import simulator.factories.BuilderBasedFactory;
+import simulator.factories.EpsilonEqualStatesBuilder;
 import simulator.factories.Factory;
+import simulator.factories.MassEqualStatesBuilder;
+import simulator.factories.MassLosingBodyBuilder;
+import simulator.factories.MovingTowardsFixedPointBuilder;
+import simulator.factories.NewtonUniversalGravitationBuilder;
+import simulator.factories.NoForceBuilder;
 import simulator.model.Body;
 import simulator.model.ForceLaws;
+import simulator.model.PhysicsSimulator;
 
 public class Main {
 
 	// default values for some parameters
 	//
 	private final static Double _dtimeDefaultValue = 2500.0;
+	private final static Integer _stepsDefaultValue =  150;
+	private static int steps = -1 ;
 	private final static String _forceLawsDefaultValue = "nlug";
 	private final static String _stateComparatorDefaultValue = "epseq";
 
@@ -33,13 +54,37 @@ public class Main {
 	private static Factory<Body> _bodyFactory;
 	private static Factory<ForceLaws> _forceLawsFactory;
 	private static Factory<StateComparator> _stateComparatorFactory;
+	
+	//output and input files
+	private static String outputFile = null ;
+	private static OutputStream op = null ;
+	
+	private static InputStream ip = null ;
+	
+	private static String expectedOutPutFile = null ;
+	private static InputStream ep = null ;
+	
 
 	private static void init() {
 		// TODO initialize the bodies factory
-
+		ArrayList<Builder<Body>> bodyBuilders = new ArrayList<>();
+		bodyBuilders.add(new BasicBodyBuilder());
+		bodyBuilders.add(new MassLosingBodyBuilder());
+		_bodyFactory = new BuilderBasedFactory<Body>(bodyBuilders);
 		// TODO initialize the force laws factory
-
+		
+		ArrayList<Builder<ForceLaws>> lawsBuilders = new ArrayList<>();
+		lawsBuilders.add(new MovingTowardsFixedPointBuilder());
+		lawsBuilders.add(new NewtonUniversalGravitationBuilder());
+		lawsBuilders.add(new NoForceBuilder() );
+		_forceLawsFactory = new BuilderBasedFactory<ForceLaws> (lawsBuilders);
 		// TODO initialize the state comparator
+		
+		ArrayList<Builder<StateComparator>> statesBuilders = new ArrayList<>();
+		statesBuilders.add(new MassEqualStatesBuilder());
+		statesBuilders.add(new EpsilonEqualStatesBuilder());
+		_stateComparatorFactory = new BuilderBasedFactory<StateComparator> (statesBuilders);
+		
 	}
 
 	private static void parseArgs(String[] args) {
@@ -56,7 +101,11 @@ public class Main {
 
 			parseHelpOption(line, cmdLineOptions);
 			parseInFileOption(line);
+			
 			// TODO add support of -o, -eo, and -s (define corresponding parse methods)
+			parseOutPutOption(line);
+			parseExpectedOutPutOption(line);
+			parseSteps(line);
 
 			parseDeltaTimeOption(line);
 			parseForceLawsOption(line);
@@ -77,7 +126,62 @@ public class Main {
 			System.err.println(e.getLocalizedMessage());
 			System.exit(1);
 		}
+		catch (FileNotFoundException e1) {
+			System.err.println(e1.getLocalizedMessage());
+			System.exit(1);
+		}
 
+	}
+
+
+	private static void parseOutPutOption(CommandLine line) throws FileNotFoundException  {// first  sande
+		
+		if(line.hasOption("o")) {
+		
+			outputFile = line.getOptionValue("o");
+			if(outputFile != null ) {
+				
+				op = new FileOutputStream(outputFile) ;
+			}
+			else {
+				op = System.out ; //lo mostramos por la consola 
+			}
+			
+			
+		}
+	
+	}
+	
+
+	private static void parseExpectedOutPutOption(CommandLine line) throws FileNotFoundException {//second
+	
+		if(line.hasOption("eo")) {
+			
+			expectedOutPutFile = line.getOptionValue("eo");
+			if(expectedOutPutFile != null ) {
+				
+				ep = new FileInputStream(expectedOutPutFile) ;
+			}
+		
+			
+		}
+	}
+	
+
+	private static void parseSteps(CommandLine line) {//third
+
+		if(line.hasOption("s")) {
+			
+			String stepsToDo = line.getOptionValue("s");
+			if(stepsToDo != null  ) {
+				steps = Integer.parseInt(stepsToDo) ;
+			}
+			else {
+				steps = _stepsDefaultValue ;
+			}
+	
+		}
+		
 	}
 
 	private static Options buildOptions() {
@@ -90,6 +194,14 @@ public class Main {
 		cmdLineOptions.addOption(Option.builder("i").longOpt("input").hasArg().desc("Bodies JSON input file.").build());
 
 		// TODO add support for -o, -eo, and -s (add corresponding information to
+		
+		cmdLineOptions.addOption(Option.builder("o").longOpt("output").hasArg().desc("Bodies JSON output file.").build());
+		
+		cmdLineOptions.addOption(Option.builder("eo").longOpt("expected-output").hasArg().desc("Expected output file.").build());
+		
+		cmdLineOptions.addOption(Option.builder("s").longOpt("steps").hasArg().desc("A Integer representing the steps to simulate. Default value:  "
+						+ _stepsDefaultValue ).build());
+		
 		// cmdLineOptions)
 
 		// delta-time
@@ -213,6 +325,22 @@ public class Main {
 
 	private static void startBatchMode() throws Exception {
 		// TODO complete this method
+		PhysicsSimulator simulator = new PhysicsSimulator(_dtime , _forceLawsFactory.createInstance(_forceLawsInfo) );
+		
+		InputStream _in = null ;
+		if(_inFile != null ) {
+			_in = new FileInputStream(_inFile);
+		}
+		else {
+			throw new Exception("ojo linea 334");
+		}
+		
+		StateComparator comparator = _stateComparatorFactory.createInstance(_stateComparatorInfo);
+		Controller controller = new Controller(simulator, _bodyFactory );
+		controller.loadBodies( _in);
+		controller.run(steps, op, _in, comparator);
+		
+		
 	}
 
 	private static void start(String[] args) throws Exception {

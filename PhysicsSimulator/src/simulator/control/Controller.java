@@ -15,11 +15,11 @@ import simulator.model.PhysicsSimulator;
 public class Controller {
 
 	private PhysicsSimulator simulator ;
-	private BuilderBasedFactory<Body> factory ;
+	private BuilderBasedFactory<Body> bodyFactories ;
  	
 	public Controller(PhysicsSimulator sim, BuilderBasedFactory<Body> factory ) {
 		this.simulator = sim;
-		this.factory = factory;
+		this.bodyFactories = factory;
 		
 		
 	}
@@ -36,7 +36,7 @@ public class Controller {
 			obj = bodies.getJSONObject(i);
 			try {
 				
-				b = this.factory.createInstance(obj) ;
+				b = this.bodyFactories.createInstance(obj) ;
 				this.simulator.addBody(b);
 				
 			}
