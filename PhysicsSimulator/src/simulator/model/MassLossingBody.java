@@ -33,8 +33,9 @@ public class MassLossingBody extends Body {
 		JSONObject a = new JSONObject() ;
 		a.put("id", id);
 		a.put("m", m);
-		a.put("p", p);
-		a.put("f", f);
+		a.put("p", p.asJSONArray());
+		a.put("v", v.asJSONArray());
+		a.put("f", f.asJSONArray());
 		a.put("freq",lossFrequency );
 		a.put("factor",lossFactor );
 		return a ;

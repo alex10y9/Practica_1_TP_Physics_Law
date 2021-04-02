@@ -14,21 +14,6 @@ public class MovingTowardsFixedPoint implements ForceLaws{
 		centre = new Vector2D(c);	
 	}
 	
-	public MovingTowardsFixedPoint(double g) {
-		gravity = g ;
-		centre = new Vector2D();	
-	}
-	
-	public MovingTowardsFixedPoint(Vector2D c) {
-		gravity = 9.81 ;
-		centre = new Vector2D(c);	
-	}
-	
-	public MovingTowardsFixedPoint() {
-		gravity = 9.81 ;
-		centre = new Vector2D();	
-	}
-	
 	@Override
 	public void apply(List<Body> bodies) {
 		

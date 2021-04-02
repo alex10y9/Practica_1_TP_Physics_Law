@@ -13,12 +13,12 @@ public class NewtonUniversalGravitationBuilder extends Builder<ForceLaws> {
 	@Override
 	public NewtonUniversalGravitation createInstance(JSONObject info) throws Exception {
 		
-		if(info.getString("type").equalsIgnoreCase("nlug")) {
-			
-			double m = info.getDouble("m");
-			
+		if(info.getString("type").equalsIgnoreCase("nlug")) {			
 			JSONObject data = info.getJSONObject("data");
-			double G = data.getDouble("G");
+			double G = 6.67E-11 ;
+			if(data.has("G")) {
+				G = data.getDouble("G");
+			}
 								
 			NewtonUniversalGravitation b = new NewtonUniversalGravitation(G);
 			return b;
@@ -36,9 +36,10 @@ public class NewtonUniversalGravitationBuilder extends Builder<ForceLaws> {
 		info.put("type", "nlug");
 		
 		JSONObject b = new JSONObject();
-		b.put("G",  6.67e10-11);
+		b.put("G",  6.67e-11);
 		
 		info.put("data", b);
+		info.put("desc", " ");
 
 		return info;
 	}

@@ -35,6 +35,7 @@ public class MassEqualStatesBuilder extends Builder<StateComparator>{
 		
 
 		info.put("data", b);
+		info.put("desc", " ");
 
 		return info;
 	}

@@ -134,7 +134,7 @@ public class Main {
 	}
 
 
-	private static void parseOutPutOption(CommandLine line) throws FileNotFoundException  {// first  sande
+	private static void parseOutPutOption(CommandLine line) throws FileNotFoundException  {// first 
 		
 		if(line.hasOption("o")) {
 		
@@ -142,12 +142,12 @@ public class Main {
 			if(outputFile != null ) {
 				
 				op = new FileOutputStream(outputFile) ;
-			}
-			else {
-				op = System.out ; //lo mostramos por la consola 
-			}
+			}		
 			
-			
+		}
+		
+		else {
+			op = System.out ; //lo mostramos por la consola 
 		}
 	
 	}
@@ -331,14 +331,11 @@ public class Main {
 		if(_inFile != null ) {
 			_in = new FileInputStream(_inFile);
 		}
-		else {
-			throw new Exception("ojo linea 334");
-		}
 		
 		StateComparator comparator = _stateComparatorFactory.createInstance(_stateComparatorInfo);
 		Controller controller = new Controller(simulator, _bodyFactory );
 		controller.loadBodies( _in);
-		controller.run(steps, op, _in, comparator);
+		controller.run(steps, op, ep , comparator);
 		
 		
 	}

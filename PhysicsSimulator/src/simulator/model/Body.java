@@ -21,7 +21,7 @@ public class Body {
 	
 	
 	void addForce(Vector2D f) {
-		this.f.plus(f);		
+		this.f = this.f.plus(f);		
 	}
 	
 	void move(double t) {
@@ -35,9 +35,9 @@ public class Body {
 			a = f.scale(1.0/m) ;
 		}
 			
-		p.plus(v.scale(t));
-		p.plus(a.scale(0.5 * t * t)); 		
-		v.plus(a.scale(t)) ;	
+		p = p.plus(v.scale(t));
+		p = p.plus(a.scale(0.5 * t * t)); 		
+		v = v.plus(a.scale(t)) ;	
 
 	}
 
@@ -66,6 +66,7 @@ public class Body {
 		a.put("id", id);
 		a.put("m", m);
 		a.put("p", p.asJSONArray());
+		a.put("v", v.asJSONArray());
 		a.put("f", f.asJSONArray());
 		return a ;
 		

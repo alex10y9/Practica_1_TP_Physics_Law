@@ -11,10 +11,6 @@ public class NewtonUniversalGravitation implements ForceLaws{
 	public NewtonUniversalGravitation(double g) {
 		G = g;
 	}
-	
-	public NewtonUniversalGravitation() {
-		G = 6.67e10-11;
-	}
 
 	@Override
 	public void apply(List<Body> bodies) {
@@ -26,8 +22,7 @@ public class NewtonUniversalGravitation implements ForceLaws{
     return delta.direction().scale(magnitude);*/
 				
 		for(Body b1 : bodies) {
-			Vector2D Fij, sumaF;
-			sumaF = null;
+			Vector2D Fij;
 			for(Body b2 : bodies) {				
 				
 				if(!b1.equals(b2)) {
@@ -36,24 +31,20 @@ public class NewtonUniversalGravitation implements ForceLaws{
 						
 					}
 					else {
-						Vector2D dir = b1.getPosition().minus(b2.getPosition());
-						dir = dir.direction();
+						Vector2D dir = b2.getPosition().minus(b1.getPosition());						
 						
-						double fij = G * ((b1.getMass() * b2.getMass()) / (b1.getPosition().distanceTo(b2.getPosition())) );                //formula
+						double fij = G * ((b1.getMass() * b2.getMass()) / Math.pow(dir.magnitude(), 2) );        //formula
+						dir = dir.direction();
 						Fij = dir.scale(fij);
-						if(sumaF != null) {
-							sumaF.plus(Fij);
-						}
-						else {
-							sumaF = Fij ;
-						}
+						
+						b1.addForce(Fij);
 					}
 				
 				}
 			
 				
 			}
-			b1.addForce(sumaF);
+		
 		}
 		
 		

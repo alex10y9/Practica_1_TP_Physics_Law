@@ -34,6 +34,7 @@ public class NoForceBuilder extends Builder<ForceLaws> {
 		JSONObject b = new JSONObject();		
 
 		info.put("data", b);
+		info.put("desc", " ");
 
 		return info;
 	}

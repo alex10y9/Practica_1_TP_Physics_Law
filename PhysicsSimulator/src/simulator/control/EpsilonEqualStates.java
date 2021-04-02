@@ -30,7 +30,7 @@ public class EpsilonEqualStates implements StateComparator {
 				JSONObject b1 = a1.getJSONObject(i);
 				JSONObject b2 = a2.getJSONObject(i);	
 				
-				if(b1.get("id") != b2.get("id")) return false ;
+				if(!b1.get("id").equals(b2.get("id"))) return false ;
 				if(Math.abs(b1.getDouble("m")- b2.getDouble("m")) > eps ) return false ;
 				else {
 					JSONArray p1 = b1.getJSONArray("p") ; //ponemos como un JSONArray 

@@ -14,13 +14,12 @@ public class BasicBodyBuilder extends Builder<Body> {
 	@Override
 	public Body createInstance(JSONObject info) throws Exception{
 		
-		if(info.getString("type").equalsIgnoreCase("basic")) {
-			
-			String id = info.getString("id");
-			double m = info.getDouble("m");
+		if(info.getString("type").equalsIgnoreCase("basic")) {			
 			
 			JSONObject data = info.getJSONObject("data");
 			
+			String id = data.getString("id");
+			double m = data.getDouble("m");
 			JSONArray parray = data.getJSONArray("p");
 			JSONArray varray = data.getJSONArray("v");
 			
@@ -58,6 +57,7 @@ public class BasicBodyBuilder extends Builder<Body> {
 		b.put("m", 5.97e24);
 		
 		info.put("data", b);
+		info.put("desc", " ");
 
 		return info;
 	}

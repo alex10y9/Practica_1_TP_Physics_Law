@@ -2,7 +2,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex1.2body.json -o resources/output/out.1.json -s 10000 -dt 10000 -fl nlug
+  -i resources/examples/ex1.2body.json -o resources/moutput/out.1.json -s 10000 -dt 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -16,7 +16,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex1.2body.json -o resources/output/out.2.json -s 10000 -dt 10000 -fl mtfp
+  -i resources/examples/ex1.2body.json -o resources/moutput/out.2.json -s 10000 -dt 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 

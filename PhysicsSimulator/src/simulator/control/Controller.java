@@ -9,15 +9,16 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import simulator.factories.BuilderBasedFactory;
+import simulator.factories.Factory;
 import simulator.model.Body;
 import simulator.model.PhysicsSimulator;
 
 public class Controller {
 
 	private PhysicsSimulator simulator ;
-	private BuilderBasedFactory<Body> bodyFactories ;
+	private Factory<Body> bodyFactories ;
  	
-	public Controller(PhysicsSimulator sim, BuilderBasedFactory<Body> factory ) {
+	public Controller(PhysicsSimulator sim, Factory<Body> factory ) {
 		this.simulator = sim;
 		this.bodyFactories = factory;
 		
@@ -56,24 +57,31 @@ public class Controller {
 	public void run(int n, OutputStream out, InputStream expOut, StateComparator cmp) throws Exception {
 		
 		JSONObject state1, state2 ;
-		JSONObject  expectedStates = new JSONObject(new JSONTokener(expOut));
-		JSONArray exit = expectedStates.getJSONArray("states");
+		JSONArray exit= null ;
+		if(expOut != null)
+		{
+			JSONObject  expectedStates = new JSONObject(new JSONTokener(expOut));
+			exit= expectedStates.getJSONArray("states");
+		}		
+
+
 		PrintStream p = new PrintStream(out) ;
 		p.println("{");
 		p.println("\"states\": [");
 		p.println(this.simulator.getState().toString()); //primer getState donde n no vale 0 pero indicamos el estado inciial del simulador 
 		
-		for (int i = 0; i < n ; i++) {
+		for (int i = 1; i <= n ; i++) {
 			
 			simulator.advance();
 			state1 = simulator.getState();
-			state2 = exit.getJSONObject(i);
-			if(cmp.equal(state1, state2)) {
-				p.println(state1.toString());
+			if(expOut != null ) {
+				state2 = exit.getJSONObject(i);
+				if(!cmp.equal(state1, state2)) {
+					throw new Exception("Error en el paso numero " + i + "\n" + state1.toString() + "\n" + state2.toString());
+				}
+		
 			}
-			else {
-				throw new Exception("Error en el paso numero " + i + "\n" + state1.toString() + "\n" + state2.toString());
-			}
+			p.println("," + state1.toString());
 			
 			
 		}

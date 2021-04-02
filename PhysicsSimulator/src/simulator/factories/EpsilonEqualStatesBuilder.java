@@ -14,9 +14,12 @@ public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 		
 		if(info.getString("type").equalsIgnoreCase("epseq")) {
 			
-			double eps ;
-			eps = info.getDouble("eps");
+			double eps = 0 ;
 			
+			if(info.has("eps")) {
+				eps = info.getDouble("eps");
+			}
+
 			EpsilonEqualStates b = new EpsilonEqualStates(eps);
 			return b;
 			
@@ -38,6 +41,7 @@ public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 		b.put("eps" , 0.1 );
 		
 		info.put("data", b);
+		info.put("desc", " ");
 	
 		return info;
 	}
