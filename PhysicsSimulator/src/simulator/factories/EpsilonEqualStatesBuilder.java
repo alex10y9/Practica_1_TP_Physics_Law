@@ -14,10 +14,12 @@ public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 		
 		if(info.getString("type").equalsIgnoreCase("epseq")) {
 			
-			double eps = 0 ;
+			double eps = 0.0 ;
 			
-			if(info.has("eps")) {
-				eps = info.getDouble("eps");
+			JSONObject data = info.getJSONObject("data");
+			
+			if(data.has("eps")) {
+				eps = data.getDouble("eps");
 			}
 
 			EpsilonEqualStates b = new EpsilonEqualStates(eps);
