@@ -11,6 +11,10 @@ public class NewtonUniversalGravitation implements ForceLaws{
 	public NewtonUniversalGravitation(double g) {
 		G = g;
 	}
+	
+	public NewtonUniversalGravitation() {
+		G = 6.67e10-11;
+	}
 
 	@Override
 	public void apply(List<Body> bodies) {
