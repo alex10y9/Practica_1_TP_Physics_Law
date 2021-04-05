@@ -30,7 +30,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex2.3body.json -o resources/output/out.3.json -s 10000 -dt 10000 -fl nlug
+  -i resources/examples/ex2.3body.json -o resources/moutput/out.3.json -s 10000 -dt 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -44,7 +44,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex2.3body.json -o resources/output/out.4.json -s 10000 -dt 10000 -fl mtfp
+  -i resources/examples/ex2.3body.json -o resources/moutput/out.4.json -s 10000 -dt 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -58,7 +58,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex3.4body.json -o resources/output/out.5.json -s 10000 -dt 10000 -fl nlug
+  -i resources/examples/ex3.4body.json -o resources/moutput/out.5.json -s 10000 -dt 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -72,7 +72,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex3.4body.json -o resources/output/out.6.json -s 10000 -dt 10000 -fl mtfp
+  -i resources/examples/ex3.4body.json -o resources/moutput/out.6.json -s 10000 -dt 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -86,7 +86,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex4.4body.json -o resources/output/out.7.json -s 10000 -dt 10000 -fl nlug
+  -i resources/examples/ex4.4body.json -o resources/moutput/out.7.json -s 10000 -dt 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -100,7 +100,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex4.4body.json -o resources/output/out.8.json -s 10000 -dt 10000 -fl mtfp
+  -i resources/examples/ex4.4body.json -o resources/moutput/out.8.json -s 10000 -dt 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -114,7 +114,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex1.2body.json -o resources/output/out.1s.json -s 10000 -fl nlug
+  -i resources/examples/ex1.2body.json -o resources/moutput/out.1s.json -s 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -128,7 +128,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex1.2body.json -o resources/output/out.2s.json -s 10000 -fl mtfp
+  -i resources/examples/ex1.2body.json -o resources/moutput/out.2s.json -s 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -142,7 +142,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex2.3body.json -o resources/output/out.3s.json -s 10000 -fl nlug
+  -i resources/examples/ex2.3body.json -o resources/moutput/out.3s.json -s 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -156,7 +156,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex2.3body.json -o resources/output/out.4s.json -s 10000 -fl mtfp
+  -i resources/examples/ex2.3body.json -o resources/moutput/out.4s.json -s 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -170,7 +170,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex3.4body.json -o resources/output/out.5s.json -s 10000 -fl nlug
+  -i resources/examples/ex3.4body.json -o resources/moutput/out.5s.json -s 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -184,7 +184,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex3.4body.json -o resources/output/out.6s.json -s 10000 -fl mtfp
+  -i resources/examples/ex3.4body.json -o resources/moutput/out.6s.json -s 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
@@ -198,7 +198,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex4.4body.json -o resources/output/out.7s.json -s 10000 -fl nlug
+  -i resources/examples/ex4.4body.json -o resources/moutput/out.7s.json -s 10000 -fl nlug
 
 * check equivalence using the commnd-line
 
@@ -212,7 +212,7 @@
 
 * was generated using the commnd-line
 
-  -i resources/examples/ex4.4body.json -o resources/output/out.8s.json -s 10000 -fl mtfp
+  -i resources/examples/ex4.4body.json -o resources/moutput/out.8s.json -s 10000 -fl mtfp
 
 * check equivalence using the commnd-line
 
