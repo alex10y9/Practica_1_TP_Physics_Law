@@ -29,15 +29,13 @@ public class Body {
 		
 		if(m == 0) {
 			a = new Vector2D();
-		//	v = new Vector2D(); ????
 		}
 		else {
 			a = f.scale(1.0/m) ;
 		}
 			
-		p = p.plus(v.scale(t));
-		p = p.plus(a.scale(0.5 * t * t)); 		
-		v = v.plus(a.scale(t)) ;	
+		p = p.plus(v.scale(t).plus(a.scale(0.5 * t * t)));
+		v = v.plus(a.scale(t));	
 
 	}
 

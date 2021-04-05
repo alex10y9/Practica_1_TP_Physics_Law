@@ -14,14 +14,41 @@ public class NewtonUniversalGravitation implements ForceLaws{
 
 	@Override
 	public void apply(List<Body> bodies) {
-
-/* private Vector2D force(Body a, Body b) {
-    Vector2D delta = b.getPosition().minus(a.getPosition());
-    double dist = delta.magnitude();
-    double magnitude = dist>0 ? (_G * a.getMass() * b.getMass()) / (dist * dist) : 0.0;
-    return delta.direction().scale(magnitude);*/
-				
+		 // calculo de f_ab
 		for(Body b1 : bodies) {
+			for(Body b2 : bodies) {	
+				if(!b1.equals(b2)) {
+					if(b1.getPosition().distanceTo(b2.getPosition()) == 0 || b1.getMass() == 0 || b2.getMass() == 0) {
+						
+					}
+					else {
+						b1.addForce(force(b1,b2));
+					}
+				
+				}
+				
+			} 
+	    }
+		
+	}	
+		
+	private Vector2D force(Body a, Body b) {
+			    Vector2D delta = b.getPosition().minus(a.getPosition());
+			    double dist = delta.magnitude();
+			    double magnitude = dist>0 ? (G * a.getMass() * b.getMass()) / (dist * dist) : 0.0;
+			    return delta.direction().scale(magnitude);
+		
+	}
+
+	public String toString() {
+		return  "Moving with constant aceleration " + G ;
+	}
+	
+}
+
+
+/*
+ * for(Body b1 : bodies) {
 			Vector2D Fij;
 			for(Body b2 : bodies) {				
 				
@@ -46,13 +73,7 @@ public class NewtonUniversalGravitation implements ForceLaws{
 			}
 		
 		}
-		
-		
-	}	
-	
-	public String toString() {
-		return  "Moving with constant aceleration " + G ;
-	}
-	
-}
-
+ * 
+ * 
+ * 
+ * */
