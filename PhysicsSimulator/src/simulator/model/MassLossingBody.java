@@ -36,8 +36,8 @@ public class MassLossingBody extends Body {
 		a.put("p", p.asJSONArray());
 		a.put("v", v.asJSONArray());
 		a.put("f", f.asJSONArray());
-		a.put("freq",lossFrequency );
-		a.put("factor",lossFactor );
+		//a.put("freq",lossFrequency );
+		//a.put("factor",lossFactor );
 		return a ;
 		
 	}
