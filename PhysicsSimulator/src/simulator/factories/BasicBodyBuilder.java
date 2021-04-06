@@ -11,6 +11,11 @@ import simulator.model.MassLossingBody;
 
 public class BasicBodyBuilder extends Builder<Body> {
 
+	
+	public BasicBodyBuilder() {
+		super("basic", "Default Body");
+	}
+	
 	@Override
 	public Body createInstance(JSONObject info) throws Exception{
 		
@@ -44,22 +49,16 @@ public class BasicBodyBuilder extends Builder<Body> {
 		
 	}
 
-	@Override
-	public JSONObject getBuilderInfo() {
-		
-		JSONObject info = new JSONObject();
-		info.put("type", "basic");
+	public JSONObject createData() {
 		
 		JSONObject b = new JSONObject();
+		
 		b.put("id", "b1");
 		b.put("p", (new Vector2D()).asJSONArray());
 		b.put("v", (new Vector2D()).asJSONArray());
 		b.put("m", 5.97e24);
-		
-		info.put("data", b);
-		info.put("desc", " ");
 
-		return info;
+		return b;
 	}
 
 	

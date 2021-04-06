@@ -8,6 +8,11 @@ import simulator.control.StateComparator;
 
 public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 
+	
+	public EpsilonEqualStatesBuilder() {
+		super("epseq", "Epsilon state ");
+	}
+	
 	@Override
 	public EpsilonEqualStates createInstance(JSONObject info) throws Exception{
 		
@@ -34,18 +39,11 @@ public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 
 
 	@Override
-	public JSONObject getBuilderInfo() {
-		
-		JSONObject info = new JSONObject();
-		info.put("type", "epseq");
-		
+	public JSONObject createData() {	
 		JSONObject b = new JSONObject();
 		b.put("eps" , 0.1 );
-		
-		info.put("data", b);
-		info.put("desc", " ");
 	
-		return info;
+		return b;
 	}
 
 }

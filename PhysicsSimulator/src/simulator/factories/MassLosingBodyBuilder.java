@@ -9,6 +9,10 @@ import simulator.model.MassLossingBody;
 
 public class MassLosingBodyBuilder extends Builder<Body>{
 
+	public MassLosingBodyBuilder() {
+		super("mlb", "Mass lossing body ");
+	}
+	
 	@Override
 	public MassLossingBody createInstance(JSONObject info) throws Exception {
 		
@@ -46,10 +50,7 @@ public class MassLosingBodyBuilder extends Builder<Body>{
 	}
 
 	@Override
-	public JSONObject getBuilderInfo() {
-		
-		JSONObject info = new JSONObject();
-		info.put("type", "mlb");
+	public JSONObject createData() {
 		
 		JSONObject b = new JSONObject();
 		b.put("id", "b1");
@@ -58,11 +59,9 @@ public class MassLosingBodyBuilder extends Builder<Body>{
 		b.put("m", 5.97e24);
 		b.put("freq",  1e3);
 		b.put("factor", 1e-3);		
-		info.put("data", b);
-		
-		info.put("desc", " ");
 
-		return info;
+
+		return b;
 	}
 	
 	

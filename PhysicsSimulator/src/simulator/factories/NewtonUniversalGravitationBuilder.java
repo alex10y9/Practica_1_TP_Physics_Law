@@ -10,6 +10,10 @@ import simulator.model.NewtonUniversalGravitation;
 
 public class NewtonUniversalGravitationBuilder extends Builder<ForceLaws> {
 
+	public NewtonUniversalGravitationBuilder() {
+		super("nlug", "Newton gravitation ");
+	}
+	
 	@Override
 	public NewtonUniversalGravitation createInstance(JSONObject info) throws Exception {
 		
@@ -30,17 +34,12 @@ public class NewtonUniversalGravitationBuilder extends Builder<ForceLaws> {
 	}
 
 	@Override
-	public JSONObject getBuilderInfo() {
-		
-		JSONObject info = new JSONObject();
-		info.put("type", "nlug");
+	public JSONObject createData() {
 		
 		JSONObject b = new JSONObject();
 		b.put("G",  6.67e-11);
-		
-		info.put("data", b);
-		info.put("desc", " ");
 
-		return info;
+
+		return b;
 	}
 }

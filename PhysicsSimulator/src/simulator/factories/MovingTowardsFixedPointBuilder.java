@@ -10,6 +10,10 @@ import simulator.model.MovingTowardsFixedPoint;
 
 public class MovingTowardsFixedPointBuilder extends Builder<ForceLaws>{
 
+	public MovingTowardsFixedPointBuilder() {
+		super("mtfp", "Moving toward fixed point  ");
+	}
+	
 	@Override
 	public MovingTowardsFixedPoint createInstance(JSONObject info) throws Exception {
 		
@@ -53,19 +57,14 @@ public class MovingTowardsFixedPointBuilder extends Builder<ForceLaws>{
 	}
 
 	@Override
-	public JSONObject getBuilderInfo() {
-		
-		JSONObject info = new JSONObject();
-		info.put("type", "mtfp");
+	public JSONObject createData() {
 		
 		JSONObject b = new JSONObject();
 		b.put("c", (new Vector2D()).asJSONArray());
 		b.put("g", 9.81);
-		
-		info.put("data", b);
-		info.put("desc", " ");
 
-		return info;
+
+		return b;
 	}
 	
 
