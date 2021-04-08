@@ -17,9 +17,7 @@ public abstract class Builder<T>  {
 
 	public abstract T createInstance(JSONObject o) throws Exception ;
 	
-	protected JSONObject createData() {
-		return new JSONObject();
-	}
+	public abstract JSONObject createData();
 	
 	public T createTheInstance(JSONObject o) throws JSONException, Exception {
 		T b= null ;

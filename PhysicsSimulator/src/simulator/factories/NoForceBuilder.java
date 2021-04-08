@@ -29,5 +29,9 @@ public class NoForceBuilder extends Builder<ForceLaws> {
 		}
 	}
 
+	public JSONObject createData() {
+		return null;
+	}
+
 	
 }

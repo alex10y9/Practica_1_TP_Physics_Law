@@ -54,7 +54,7 @@ public class Controller {
 		
 	}
 	
-	public void run(int n, OutputStream out, InputStream expOut, StateComparator cmp) throws Exception {
+	public void run(int n, OutputStream out, InputStream expOut, StateComparator cmp) throws NotEqualException {
 		
 		JSONObject state1, state2 ;
 		JSONArray exit= null ;
@@ -77,7 +77,7 @@ public class Controller {
 			if(expOut != null ) {
 				state2 = exit.getJSONObject(i);
 				if(!cmp.equal(state1, state2)) {
-					throw new Exception("Error en el paso numero " + i + "\n" + state1.toString() + "\n" + state2.toString());
+					throw new NotEqualException(state1, state2, i);
 				}
 		
 			}

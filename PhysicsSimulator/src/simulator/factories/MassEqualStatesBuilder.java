@@ -29,4 +29,9 @@ public class MassEqualStatesBuilder extends Builder<StateComparator>{
 	
 	}
 
+	@Override
+	public JSONObject createData() {
+		return null;
+	}
+
 }
