@@ -1,7 +1,5 @@
 package simulator.factories;
 
-import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,14 +13,14 @@ public abstract class Builder<T>  {
 		desc = d;
 	}
 
-	public abstract T createInstance(JSONObject o) throws Exception ;
+	protected abstract T createTheInstance(JSONObject o) throws Exception ;
 	
 	public abstract JSONObject createData();
 	
-	public T createTheInstance(JSONObject o) throws JSONException, Exception {
+	public T createInstance(JSONObject o) throws JSONException, Exception {
 		T b= null ;
 		if(typeTag != null && typeTag.equals(o.getString("type")))
-			b = createInstance(o.getJSONObject("data"));
+			b = createTheInstance(o.getJSONObject("data"));
 		return b ;
 	}
 	

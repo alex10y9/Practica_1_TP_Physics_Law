@@ -3,7 +3,6 @@ package simulator.factories;
 import org.json.JSONObject;
 
 import simulator.control.EpsilonEqualStates;
-import simulator.control.MassEqualStates;
 import simulator.control.StateComparator;
 
 public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
@@ -14,27 +13,18 @@ public class EpsilonEqualStatesBuilder extends Builder<StateComparator>{
 	}
 	
 	@Override
-	public EpsilonEqualStates createInstance(JSONObject info) throws Exception{
-		
-		
-		if(info.getString("type").equalsIgnoreCase("epseq")) {
-			
-			double eps = 0.0 ;
-			
-			JSONObject data = info.getJSONObject("data");
-			
-			if(data.has("eps")) {
-				eps = data.getDouble("eps");
-			}
+	public EpsilonEqualStates createTheInstance(JSONObject info) throws Exception{
 
-			EpsilonEqualStates b = new EpsilonEqualStates(eps);
-			return b;
 			
-		}
+		double eps = 0.0 ;
 		
-		else {
-			return null ;
+		if(info.has("eps")) {
+			eps = info.getDouble("eps");
 		}
+
+		EpsilonEqualStates b = new EpsilonEqualStates(eps);
+		return b;
+
 	}
 
 

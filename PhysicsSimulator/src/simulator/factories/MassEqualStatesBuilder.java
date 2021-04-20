@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import simulator.control.MassEqualStates;
 import simulator.control.StateComparator;
-import simulator.model.NewtonUniversalGravitation;
 
 public class MassEqualStatesBuilder extends Builder<StateComparator>{
 	
@@ -13,20 +12,12 @@ public class MassEqualStatesBuilder extends Builder<StateComparator>{
 	}
 	
 	@Override
-	public MassEqualStates createInstance(JSONObject info) { //falta
-		
-		
-		if(info.getString("type").equalsIgnoreCase("masseq")) {
+	public MassEqualStates createTheInstance(JSONObject info) { //falta
+
 								
-			MassEqualStates b = new MassEqualStates();
-			return b;
-			
-		}
-		
-		else {
-			return null ;
-		}
-	
+		MassEqualStates b = new MassEqualStates();
+		return b;
+
 	}
 
 	@Override

@@ -16,6 +16,9 @@ public class PhysicsSimulator {
 	public PhysicsSimulator(double rt, ForceLaws forceApp ) {
 		realTime = 0.0 ;
 		timePerStep = rt ;
+		if(timePerStep <= 0.0) { 
+			throw new IllegalArgumentException();
+		}
 		actualForce = forceApp ;
 		if(forceApp == null ) {
 			throw new IllegalArgumentException();
@@ -30,10 +33,7 @@ public class PhysicsSimulator {
 			b.resetForce();			
 		}
 		actualForce.apply(bodies);
-		for(Body b : bodies) {
-			if(timePerStep <= 0.0) { 
-				throw new IllegalArgumentException();
-			}
+		for(Body b : bodies) {		
 			b.move(timePerStep);			
 		}
 		realTime += timePerStep;
@@ -42,14 +42,7 @@ public class PhysicsSimulator {
 	
 	public void addBody(Body b ) {
 		
-		boolean correct = true ;
-		for(Body b1: bodies) {
-			if(b1.getId() == b.getId()) {
-				correct = false ;
-			}
-		}
-		
-		if(correct)	bodies.add(b);
+		if(!bodies.contains(b))	bodies.add(b);
 		else {
 			throw new IllegalArgumentException();
 		}

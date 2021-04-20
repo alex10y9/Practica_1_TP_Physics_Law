@@ -14,19 +14,14 @@ public class MassLosingBodyBuilder extends Builder<Body>{
 	}
 	
 	@Override
-	public MassLossingBody createInstance(JSONObject info) throws Exception {
-		
-		if(info.getString("type").equalsIgnoreCase("mlb")) {
-
+	public MassLossingBody createTheInstance(JSONObject info) throws Exception {
 			
-			JSONObject data = info.getJSONObject("data");
-			
-			String id = data.getString("id");
-			double m = data.getDouble("m");
-			double lfac = data.getDouble("factor");
-			double lfreq = data.getDouble("freq");
-			JSONArray parray = data.getJSONArray("p");
-			JSONArray varray = data.getJSONArray("v");
+			String id = info.getString("id");
+			double m = info.getDouble("m");
+			double lfac = info.getDouble("factor");
+			double lfreq = info.getDouble("freq");
+			JSONArray parray = info.getJSONArray("p");
+			JSONArray varray = info.getJSONArray("v");
 			
 			if(parray.length() != 2 || varray.length() != 2) {
 				
@@ -40,12 +35,6 @@ public class MassLosingBodyBuilder extends Builder<Body>{
 			
 			MassLossingBody b = new MassLossingBody(id , v, p, m, lfac, lfreq);
 			return  b;
-			
-		}
-		
-		else {
-			return null;
-		}
 		
 	}
 

@@ -1,13 +1,10 @@
 package simulator.factories;
 
-import java.util.Vector;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import simulator.misc.Vector2D;
 import simulator.model.Body;
-import simulator.model.MassLossingBody;
 
 public class BasicBodyBuilder extends Builder<Body> {
 
@@ -17,35 +14,26 @@ public class BasicBodyBuilder extends Builder<Body> {
 	}
 	
 	@Override
-	public Body createInstance(JSONObject info) throws Exception{
+	public Body createTheInstance(JSONObject info) throws Exception{
 		
-		if(info.getString("type").equalsIgnoreCase("basic")) {			
+		String id = info.getString("id");
+		double m = info.getDouble("m");
+		JSONArray parray = info.getJSONArray("p");
+		JSONArray varray = info.getJSONArray("v");
+		
+		if(parray.length() != 2 || varray.length() != 2) {
 			
-			JSONObject data = info.getJSONObject("data");
-			
-			String id = data.getString("id");
-			double m = data.getDouble("m");
-			JSONArray parray = data.getJSONArray("p");
-			JSONArray varray = data.getJSONArray("v");
-			
-			if(parray.length() != 2 || varray.length() != 2) {
-				
-				throw new Exception("Cuidado, el tamaño de los vectores es distinto de 2, que son v y p ");
-				
-			}
-			
-			Vector2D p = new Vector2D(parray.getDouble(0), parray.getDouble(1)) ; 
-					
-			Vector2D v = new Vector2D(varray.getDouble(0), varray.getDouble(1));
-			
-			Body b = new Body(id , v, p, m);
-			return b;
+			throw new Exception("Cuidado, el tamaño de los vectores es distinto de 2, que son v y p ");
 			
 		}
 		
-		else {
-			return null;
-		}
+		Vector2D p = new Vector2D(parray.getDouble(0), parray.getDouble(1)) ; 
+				
+		Vector2D v = new Vector2D(varray.getDouble(0), varray.getDouble(1));
+		
+		Body b = new Body(id , v, p, m);
+		return b;
+
 		
 	}
 

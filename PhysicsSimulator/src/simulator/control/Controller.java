@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import simulator.factories.BuilderBasedFactory;
 import simulator.factories.Factory;
 import simulator.model.Body;
 import simulator.model.PhysicsSimulator;

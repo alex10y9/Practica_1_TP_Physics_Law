@@ -18,13 +18,11 @@ public class NewtonUniversalGravitation implements ForceLaws{
 		for(Body b1 : bodies) {
 			for(Body b2 : bodies) {	
 				if(!b1.equals(b2)) {
-					if(b1.getPosition().distanceTo(b2.getPosition()) == 0 || b1.getMass() == 0 || b2.getMass() == 0) {
+					if(!(b1.getPosition().distanceTo(b2.getPosition()) == 0 || b1.getMass() == 0 || b2.getMass() == 0)) {
+						
+						b1.addForce(force(b1,b2));
 						
 					}
-					else {
-						b1.addForce(force(b1,b2));
-					}
-				
 				}
 				
 			} 
